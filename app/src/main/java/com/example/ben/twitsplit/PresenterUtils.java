@@ -68,10 +68,18 @@ public class PresenterUtils {
             arrMsg.add(msg);
         } else {
             String[] arrStrings = msg.split(" ");
-            String s = arrayToStringLimitCharacters(arrStrings);
-            arrMsg.add(s);
-            String rightString = msg.substring(s.length()).trim();
-            splitMessage(rightString);
+            if (arrStrings.length==1) {
+                String s = slipForLongString(msg);
+                arrMsg.add(s);
+                String rightString = msg.substring(s.length()).trim();
+                splitMessage(rightString);
+            } else {
+                String s = arrayToStringLimitCharacters(arrStrings);
+                arrMsg.add(s);
+                String rightString = msg.substring(s.length()).trim();
+                splitMessage(rightString);
+            }
+
         }
     }
 
@@ -86,6 +94,14 @@ public class PresenterUtils {
             }
         }
         return builder.toString().trim();
+    }
+
+    private String slipForLongString(String msg) {
+        String s = msg;
+        if (msg.length() >= (LIMIT_CHARACTER_LENGTH - numberAddMoreChar)) {
+            s = msg.substring(0,LIMIT_CHARACTER_LENGTH - numberAddMoreChar -1);
+        }
+        return s;
     }
 
 }

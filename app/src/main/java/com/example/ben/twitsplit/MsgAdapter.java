@@ -45,4 +45,5 @@ public class MsgAdapter extends RecyclerView.Adapter<MsgAdapter.ViewHolder> {
             textView = itemView.findViewById(R.id.txtItem);
         }
     }
+
 }

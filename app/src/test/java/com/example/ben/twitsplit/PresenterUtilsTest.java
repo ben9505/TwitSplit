@@ -71,4 +71,10 @@ public class PresenterUtilsTest {
         verify(view).onSendMultiMessage(strings);
     }
 
+    @Test
+    public void splitMessageCase4() throws Exception {
+        when(view.getMessage()).thenReturn("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        presenterUtils.sendMessage(context);
+    }
+
 }

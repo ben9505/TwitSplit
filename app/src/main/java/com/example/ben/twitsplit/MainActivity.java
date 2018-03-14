@@ -39,7 +39,11 @@ public class MainActivity extends AppCompatActivity implements PresenterView {
         rclListMessage.setLayoutManager(linearLayoutManager);
         rclListMessage.setHasFixedSize(false);
         rclListMessage.setAdapter(msgAdapter);
+    }
 
+    private void updateData() {
+        msgAdapter.notifyDataSetChanged();
+        rclListMessage.smoothScrollToPosition(msgAdapter.getItemCount() - 1);
     }
 
     @Override
@@ -54,8 +58,9 @@ public class MainActivity extends AppCompatActivity implements PresenterView {
 
     @Override
     public void onSendMessage(String msg) {
+
         strings.add(msg);
-        msgAdapter.notifyDataSetChanged();
+        updateData();
     }
 
     @Override
@@ -63,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements PresenterView {
         for (int i=0; i < arrMsg.size(); i++) {
             strings.add(arrMsg.get(i));
         }
-        msgAdapter.notifyDataSetChanged();
+        updateData();
     }
 
     public void onClickSend(View view) {
